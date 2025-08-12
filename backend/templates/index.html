@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MediPredict</title>
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <link href="/static/style.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="container">
+    <h1 class="logo">🩺 MediPredict</h1>
+    <p class="subtitle">AI-Powered Disease Prediction System</p>
+
+    <form action="/predict" method="post">
+      <label for="symptom-select">Select your symptoms:</label>
+      <select id="symptom-select" name="symptoms" multiple="multiple">
+        {% for symptom in symptoms %}
+          <option value="{{ symptom }}">{{ symptom.replace("_", " ").title() }}</option>
+        {% endfor %}
+      </select>
+      <div class="button-group">
+        <button type="submit">Predict</button>
+        <button type="button" id="voice-btn">Use Voice Input 🎤</button>
+
+      </div>
+    </form>
+
+    <p id="voice-result"></p>
+  </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        $('#symptom-select').select2({
+          placeholder: "Select symptoms",
+          width: '100%'
+        });
+      });
+    
+      function getVoiceInput() {
+        if (!('webkitSpeechRecognition' in window)) {
+          alert("Sorry, your browser does not support speech recognition.");
+          return;
+        }
+    
+        const recognition = new webkitSpeechRecognition();
+        recognition.lang = 'en-US';
+        recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
+    
+        recognition.start();
+    
+        recognition.onresult = function(event) {
+          const transcript = event.results[0][0].transcript;
+          document.getElementById('voice-result').innerText = "Detected speech: " + transcript;
+    
+          // Map spoken text to symptoms
+          const spokenWords = transcript.toLowerCase().split(/\s+/);
+          const matchedSymptoms = [];
+    
+          $('#symptom-select option').each(function() {
+            const symptomText = $(this).text().toLowerCase();
+            for (const word of spokenWords) {
+              if (symptomText.includes(word)) {
+                matchedSymptoms.push($(this).val());
+                break;
+              }
+            }
+          });
+    
+          if (matchedSymptoms.length === 0) {
+            document.getElementById('voice-result').innerText += " (no matching symptoms found)";
+            return;
+          }
+    
+          matchedSymptoms.forEach(symptom => {
+            $('#symptom-select option[value="' + symptom + '"]').prop('selected', true);
+          });
+          $('#symptom-select').trigger('change');
+        };
+    
+        recognition.onerror = function(event) {
+          alert('Error occurred during recognition: ' + event.error);
+        };
+      }
+    </script>
+</body>
+</html>
