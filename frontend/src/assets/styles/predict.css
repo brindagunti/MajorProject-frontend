@@ -1,0 +1,47 @@
+/* Dropdown container */
+.dropdown-container {
+  max-width: 500px;
+  margin: 0 auto 30px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Label */
+.dropdown-label {
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 18px;
+  color: #000000;
+  text-align: center;
+}
+
+/* Dropdown styling */
+.symptom-dropdown {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  font-size: 15px;
+  background: #d1d5db;
+  outline: none;
+  min-height: 180px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease, transform 0.1s ease;
+}
+
+.symptom-dropdown:focus {
+  box-shadow: 0 4px 12px rgba(30, 136, 229, 0.4);
+  transform: scale(1.01);
+}
+
+/* Note under dropdown */
+.dropdown-note {
+  font-size: 13px;
+  color: #555;
+  margin-top: 8px;
+}
