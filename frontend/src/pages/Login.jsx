@@ -17,15 +17,30 @@ export default function Login() {
         <h2>Login</h2>
         <form onSubmit={handleSubmit}>
           <label>Email</label>
-          <input type="email" placeholder="Enter your email" required />
+          <input
+            type="email"
+            className="auth-input"
+            placeholder="Enter your email"
+            required
+          />
 
           <label>Password</label>
-          <input type="password" placeholder="Enter your password" required />
+          <input
+            type="password"
+            className="auth-input"
+            placeholder="Enter your password"
+            required
+          />
 
-          <button type="submit">Login</button>
+          <button type="submit" className="auth-button">
+            Login
+          </button>
         </form>
-        <p>
-          Don't have an account? <a href="/signup">Sign up</a>
+        <p className="auth-text">
+          Don't have an account?{" "}
+          <a href="/signup" className="auth-link">
+            Sign up
+          </a>
         </p>
       </div>
     </div>

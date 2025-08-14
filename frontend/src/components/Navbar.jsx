@@ -5,7 +5,7 @@ import "../assets/styles/navbar.css";
 export default function Navbar() {
   return (
     <nav className="navbar">
-      <div className="nav-logo">MediPredict</div>
+      <Link to="/" className="nav-logo">MediPredict</Link>
       <ul className="nav-links">
         <li><Link to="/predict">Predict</Link></li>
         <li><Link to="/chat">Chat</Link></li>

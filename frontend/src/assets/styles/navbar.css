@@ -2,12 +2,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #2c3e50; /* classy deep navy-gray */
+  background: #2c3e50;
   padding: 1rem 2rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .nav-logo {
-  color: #ecf0f1; /* soft white */
+  color: #ecf0f1;
   font-size: 1.7rem;
   font-weight: bold;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -28,5 +30,5 @@
 }
 
 .nav-links a:hover {
-  color: #1abc9c; /* soft teal */
+  color: #1abc9c;
 }
